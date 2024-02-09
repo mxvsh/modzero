@@ -8,7 +8,7 @@ const IS_VERCEL = process.env.VERCEL === '1';
 
 // Use Vercel environment variable to determine the webhook address
 const WEBHOOK_ADDRESS = (
-	IS_VERCEL ? process.env.VERCEL_URL : process.env.WEBHOOK_ADDRESS
+	IS_VERCEL ? `https://${process.env.VERCEL_URL}` : process.env.WEBHOOK_ADDRESS
 ) as string;
 
 export const addBot = protectedProcedure
