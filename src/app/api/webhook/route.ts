@@ -1,7 +1,7 @@
 import { Bot } from 'grammy/web';
 import { UserFromGetMe } from 'grammy/types';
 import prisma from '~lib/prisma';
-import telegramBot from '~telegram/bot';
+// import telegramBot from '~telegram/bot';
 
 export async function POST(req: Request) {
 	const url = new URL(req.url);
@@ -23,7 +23,12 @@ export async function POST(req: Request) {
 		botInfo: botData.botInfo as unknown as UserFromGetMe,
 	});
 
-	bot.use(telegramBot);
+	// note: just for testing purpose
+	bot.command('start', (ctx) => {
+		ctx.reply('Hello!');
+	});
+
+	// bot.use(telegramBot);
 
 	bot.handleUpdate(payload);
 
