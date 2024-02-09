@@ -77,7 +77,7 @@ function SignupPage() {
 						Submit
 					</Button>
 
-					<Button as={Link} href='/login' className='w-full'>
+					<Button as={Link} href='/login' className='w-full' variant='bordered'>
 						Already have an account
 					</Button>
 				</form>

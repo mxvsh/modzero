@@ -78,7 +78,12 @@ function LoginPage() {
 						Login
 					</Button>
 
-					<Button as={Link} href='/signup' className='w-full'>
+					<Button
+						as={Link}
+						href='/signup'
+						className='w-full'
+						variant='bordered'
+					>
 						Create an account
 					</Button>
 				</form>
