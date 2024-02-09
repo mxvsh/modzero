@@ -3,15 +3,16 @@ import { Bot } from 'grammy/web';
 import { protectedProcedure } from '~server/trpc';
 import prisma from '~lib/prisma';
 
+// TODO: Automatic webhook address from Vercel environment variable
+
 // Use Vercel environment variable to determine if the app is running on Vercel
-const IS_VERCEL = process.env.VERCEL === '1';
+// const IS_VERCEL = process.env.VERCEL === '1';
 
 // Use Vercel environment variable to determine the webhook address
-const WEBHOOK_ADDRESS = (
-	IS_VERCEL
-		? `https://${process.env.VERCEL_URL}/api/webhook`
-		: process.env.WEBHOOK_ADDRESS
-) as string;
+const WEBHOOK_ADDRESS = // IS_VERCEL
+	// ? `https://${process.env.VERCEL_URL}/api/webhook`
+	// : process.env.WEBHOOK_ADDRESS
+	process.env.WEBHOOK_ADDRESS as string;
 
 export const addBot = protectedProcedure
 	.input(
