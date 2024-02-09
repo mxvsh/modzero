@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo</title>
+    <g id="logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#242424" x="0" y="0" width="512" height="512"></rect>
+        <path d="M209.861498,185 L312.074421,286.818182 L273.744575,325 L209.536924,261.039692 L145.329846,325 L107,286.818182 L209.212922,185 L209.536924,185.322698 L209.861498,185 Z M302.787078,185 L405,286.818182 L366.670154,325 L264.457232,223.181818 L302.787078,185 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+    </g>
+</svg>
