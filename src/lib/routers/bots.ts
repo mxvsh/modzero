@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { Bot } from 'grammy';
 import { protectedProcedure } from '~server/trpc';
 import prisma from '~lib/prisma';
+import { Telegraf } from 'telegraf';
 
 // Use Vercel environment variable to determine if the app is running on Vercel
 const IS_VERCEL = process.env.VERCEL === '1';
@@ -22,13 +23,13 @@ export const addBot = protectedProcedure
 		const { token } = input;
 
 		try {
-			const bot = new Bot(token);
+			const bot = new Telegraf(token);
 
-			const me = await bot.api.getMe();
+			const me = await bot.telegram.getMe();
 
 			const webhookAddress = new URL(WEBHOOK_ADDRESS);
 			webhookAddress.searchParams.append('botId', me.id.toString());
-			await bot.api.setWebhook(webhookAddress.toString());
+			await bot.telegram.setWebhook(webhookAddress.toString());
 
 			// todo: error handling
 
