@@ -31,8 +31,6 @@ export const addBot = protectedProcedure
 			webhookAddress.searchParams.append('botId', me.id.toString());
 			await bot.telegram.setWebhook(webhookAddress.toString());
 
-			// todo: error handling
-
 			try {
 				return await prisma.bot.create({
 					data: {
@@ -50,7 +48,7 @@ export const addBot = protectedProcedure
 			}
 		} catch (e) {
 			console.error(e);
-			return null;
+			throw e;
 		}
 	});
 
