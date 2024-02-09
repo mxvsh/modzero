@@ -6,11 +6,14 @@ import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { Input, Button } from '@nextui-org/react';
+import { useState } from 'react';
 
 function LoginPage() {
 	const form = useForm();
+	const [loading, setLoading] = useState(false);
 
 	function handleLogin(data: Record<string, string>) {
+		setLoading(true);
 		signIn('credentials', {
 			username: data.username,
 			password: data.password,
@@ -18,6 +21,7 @@ function LoginPage() {
 		}).then((res) => {
 			if (!res?.ok) {
 				toast.error('Invalid username or password');
+				setLoading(false);
 			} else {
 				toast.success('Login successful');
 
@@ -65,7 +69,12 @@ function LoginPage() {
 							{...form.register('password')}
 						/>
 					</div>
-					<Button color='primary' type='submit' className='w-full'>
+					<Button
+						color='primary'
+						type='submit'
+						className='w-full'
+						isLoading={loading}
+					>
 						Login
 					</Button>
 

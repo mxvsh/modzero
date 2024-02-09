@@ -7,11 +7,14 @@ import { useForm } from 'react-hook-form';
 import { Input, Button } from '@nextui-org/react';
 
 import { toast } from 'sonner';
+import { useState } from 'react';
 
 function SignupPage() {
 	const form = useForm();
+	const [loading, setLoading] = useState(false);
 
 	function handleSignup(data: Record<string, string>) {
+		setLoading(true);
 		fetch('/api/auth/signup', {
 			method: 'POST',
 			headers: {
@@ -23,6 +26,7 @@ function SignupPage() {
 				return signIn('credentials', { callbackUrl: '/bots' });
 			} else {
 				toast.error(await res.text());
+				setLoading(false);
 			}
 		});
 	}
@@ -64,7 +68,12 @@ function SignupPage() {
 							{...form.register('password')}
 						/>
 					</div>
-					<Button color='primary' type='submit' className='w-full'>
+					<Button
+						color='primary'
+						type='submit'
+						className='w-full'
+						isLoading={loading}
+					>
 						Submit
 					</Button>
 
