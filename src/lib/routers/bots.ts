@@ -21,29 +21,34 @@ export const addBot = protectedProcedure
 		const { user } = ctx.session;
 		const { token } = input;
 
-		const bot = new Bot(token);
-
-		const me = await bot.api.getMe();
-
-		const webhookAddress = new URL(WEBHOOK_ADDRESS);
-		webhookAddress.searchParams.append('botId', me.id.toString());
-		await bot.api.setWebhook(webhookAddress.toString());
-
-		// todo: error handling
-
 		try {
-			return await prisma.bot.create({
-				data: {
-					id: me.id.toString(),
-					name: me.first_name,
-					username: me.username,
-					userId: user.id,
-					botInfo: me as any,
-					token,
-				},
-			});
-		} catch (error) {
-			console.error(error);
+			const bot = new Bot(token);
+
+			const me = await bot.api.getMe();
+
+			const webhookAddress = new URL(WEBHOOK_ADDRESS);
+			webhookAddress.searchParams.append('botId', me.id.toString());
+			await bot.api.setWebhook(webhookAddress.toString());
+
+			// todo: error handling
+
+			try {
+				return await prisma.bot.create({
+					data: {
+						id: me.id.toString(),
+						name: me.first_name,
+						username: me.username,
+						userId: user.id,
+						botInfo: me as any,
+						token,
+					},
+				});
+			} catch (error) {
+				console.error(error);
+				return null;
+			}
+		} catch (e) {
+			console.error(e);
 			return null;
 		}
 	});
