@@ -1,15 +1,14 @@
 import { z } from 'zod';
-import { Bot } from 'grammy';
+import { Bot } from 'grammy/web';
 import { protectedProcedure } from '~server/trpc';
 import prisma from '~lib/prisma';
-import { Telegraf } from 'telegraf';
 
 // Use Vercel environment variable to determine if the app is running on Vercel
 const IS_VERCEL = process.env.VERCEL === '1';
 
 // Use Vercel environment variable to determine the webhook address
 const WEBHOOK_ADDRESS = (
-	IS_VERCEL ? `https://${process.env.VERCEL_URL}` : process.env.WEBHOOK_ADDRESS
+	IS_VERCEL ? process.env.VERCEL_URL : process.env.WEBHOOK_ADDRESS
 ) as string;
 
 export const addBot = protectedProcedure
@@ -23,13 +22,15 @@ export const addBot = protectedProcedure
 		const { token } = input;
 
 		try {
-			const bot = new Telegraf(token);
+			const bot = new Bot(token);
 
-			const me = await bot.telegram.getMe();
+			const me = await bot.api.getMe();
 
 			const webhookAddress = new URL(WEBHOOK_ADDRESS);
 			webhookAddress.searchParams.append('botId', me.id.toString());
-			await bot.telegram.setWebhook(webhookAddress.toString());
+			await bot.api.setWebhook(webhookAddress.toString());
+
+			// todo: error handling
 
 			try {
 				return await prisma.bot.create({
@@ -48,7 +49,7 @@ export const addBot = protectedProcedure
 			}
 		} catch (e) {
 			console.error(e);
-			throw e;
+			return null;
 		}
 	});
 
