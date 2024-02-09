@@ -1,4 +1,4 @@
-import { Composer } from 'grammy';
+import { Composer } from 'grammy/web';
 import databaseComposer from './database';
 
 const bot = new Composer();

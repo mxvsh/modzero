@@ -1,4 +1,4 @@
-import { Bot } from 'grammy';
+import { Bot } from 'grammy/web';
 import { UserFromGetMe } from 'grammy/types';
 import prisma from '~lib/prisma';
 import telegramBot from '~telegram/bot';

@@ -1,4 +1,4 @@
-import { Bot } from 'grammy';
+import { Bot } from 'grammy/web';
 import prisma from './prisma';
 
 export function getUserBots(userId: string) {

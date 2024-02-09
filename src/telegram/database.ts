@@ -1,4 +1,4 @@
-import { Composer } from 'grammy';
+import { Composer } from 'grammy/web';
 import { ChatMemberAdministrator, ChatMemberOwner } from 'grammy/types';
 import prisma from '~lib/prisma';
 
