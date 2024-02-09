@@ -20,7 +20,9 @@
 		"paths": {
 			"~lib/*": ["./src/lib/*"],
 			"~components/*": ["./src/components/*"],
-			"~assets/*": ["./src/assets/*"]
+			"~assets/*": ["./src/assets/*"],
+			"~server/*": ["./src/server/*"],
+			"~telegram/*": ["./src/telegram/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

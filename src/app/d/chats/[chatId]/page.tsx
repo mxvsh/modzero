@@ -4,7 +4,7 @@ import PageTitle from '~components/PageTitle';
 function Home() {
 	return (
 		<div>
-			<PageTitle title='Chats' />
+			<PageTitle title='Home' />
 		</div>
 	);
 }

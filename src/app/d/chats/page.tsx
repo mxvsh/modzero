@@ -1,8 +1,15 @@
 import React from 'react';
-import PageTitle from '~components/PageTitle';
+import ChatsList from '~components/ChatsList';
+import prisma from '~lib/prisma';
 
-function Chats() {
-	return <>Chats</>;
+async function Chats() {
+	const chats = await prisma.telegramChat.findMany();
+
+	return (
+		<>
+			<ChatsList chats={chats} />
+		</>
+	);
 }
 
 export default Chats;

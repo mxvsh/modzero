@@ -33,7 +33,7 @@ function SignupPage() {
 				<div className='text-center'>
 					<Image
 						alt='logo'
-						src='/logo-light.png'
+						src='/logo-dark.png'
 						width='80'
 						height='80'
 						className='mx-auto rounded-3xl'
@@ -64,11 +64,11 @@ function SignupPage() {
 							{...form.register('password')}
 						/>
 					</div>
-					<Button type='submit' className='w-full'>
+					<Button color='primary' type='submit' className='w-full'>
 						Submit
 					</Button>
 
-					<Button color='primary' as={Link} href='/login' className='w-full'>
+					<Button as={Link} href='/login' className='w-full'>
 						Already have an account
 					</Button>
 				</form>

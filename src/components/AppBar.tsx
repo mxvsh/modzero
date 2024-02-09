@@ -3,19 +3,23 @@
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { ArrowLeftIcon, BookIcon, MenuIcon, UsersIcon } from 'lucide-react';
-import { Button, Spinner } from '@nextui-org/react';
+import { Button, Spinner, useDisclosure } from '@nextui-org/react';
 import Link from 'next/link';
 import AvatarMenu from './AvatarMenu';
 import { useAppStore } from '~lib/store';
 import logo from '~assets/logo.svg';
+import AppDrawer from './AppDrawer';
 
 export function AppBar() {
 	const params = useParams();
 	const appStore = useAppStore();
 	const isRoot = Object.keys(params).length === 0;
+	const drawer = useDisclosure();
 
 	return (
 		<div className='border-b-1'>
+			<AppDrawer disclosure={drawer} />
+
 			<div className='flex items-center px-4 gap-4 h-20'>
 				<Button
 					isIconOnly
@@ -23,12 +27,13 @@ export function AppBar() {
 					variant='light'
 					size='lg'
 					className='md:hidden'
+					onClick={drawer.onOpenChange}
 				>
 					<MenuIcon />
 				</Button>
 
 				<Image
-					className={`pointer-events-none rounded-xl ${
+					className={`pointer-events-none rounded-2xl ${
 						!isRoot ? 'hidden' : 'md:block'
 					}`}
 					alt='logo'

@@ -1,11 +1,31 @@
 import React from 'react';
-import UpdateAppTitle from '~lib/helper/UpdateAppTitle';
+import { redirect } from 'next/navigation';
+import UpdateAppTitle from '~lib/helpers/UpdateAppTitle';
+import prisma from '~lib/prisma';
 
-function ChatLayout({ children }: { children: React.ReactNode }) {
+async function ChatLayout({
+	children,
+	params,
+}: {
+	children: React.ReactNode;
+	params: {
+		chatId: string;
+	};
+}) {
+	const chatData = await prisma.telegramChat.findUnique({
+		where: {
+			id: params.chatId,
+		},
+	});
+
+	if (!chatData) {
+		redirect('/d/chats');
+	}
+
 	return (
 		<>
 			{children}
-			<UpdateAppTitle title='ModZero' />
+			<UpdateAppTitle title={chatData.title} />
 		</>
 	);
 }

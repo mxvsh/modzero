@@ -7,12 +7,14 @@ export const authOptions: AuthOptions = {
 	// Configure one or more authentication providers
 	providers: [
 		Credentials({
-			async authorize(credentials, req) {
-				const { username, password } = credentials as Record<string, string>;
+			async authorize(credentials) {
+				if (!credentials) {
+					return null;
+				}
 
-				// todo: Add zod validation
+				const { username, password } = credentials;
 
-				const user = await prisma.user.findUnique({
+				const user = await prisma.user.findFirst({
 					where: {
 						username,
 					},
@@ -27,10 +29,9 @@ export const authOptions: AuthOptions = {
 				if (!isValid) {
 					return null;
 				}
-
 				return {
 					id: user.id,
-					name: user.username,
+					username: user.username,
 				};
 			},
 			credentials: {
@@ -38,6 +39,25 @@ export const authOptions: AuthOptions = {
 				password: { label: 'Password', type: 'password' },
 			},
 		}),
-		// ...add more providers here
 	],
+	callbacks: {
+		async session(params) {
+			if (!params.token.sub) {
+				return params.session;
+			}
+
+			const user = await prisma.user.findFirst({
+				where: {
+					id: params.token.sub,
+				},
+			});
+
+			if (!user) {
+				return params.session;
+			}
+			params.session.user = user;
+
+			return params.session;
+		},
+	},
 };

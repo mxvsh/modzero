@@ -6,20 +6,25 @@ export async function POST(req: Request) {
 
 	// todo: Add zod validation
 
-	const isFirst = (await prisma.user.count()) === 0;
+	try {
+		const isFirst = (await prisma.user.count()) === 0;
 
-	if (!isFirst) {
-		return new Response('Signups are disabled', { status: 403 });
+		if (!isFirst) {
+			return new Response('Signups are disabled', { status: 403 });
+		}
+
+		const hash = await argon.hash(payload.password);
+
+		await prisma.user.create({
+			data: {
+				username: payload.username,
+				passwordHash: hash,
+			},
+		});
+	} catch (error) {
+		console.error(error);
+		return new Response('error', { status: 500 });
 	}
-
-	const hash = await argon.hash(payload.password);
-
-	await prisma.user.create({
-		data: {
-			username: payload.username,
-			passwordHash: hash,
-		},
-	});
 
 	return new Response('ok');
 }

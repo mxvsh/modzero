@@ -22,7 +22,7 @@ function LoginPage() {
 				toast.success('Login successful');
 
 				setTimeout(() => {
-					window.location.href = '/chats';
+					window.location.href = '/d/chats';
 				}, 1000);
 			}
 		});
@@ -34,7 +34,7 @@ function LoginPage() {
 				<div className='text-center'>
 					<Image
 						alt='logo'
-						src='/logo-light.png'
+						src='/logo-dark.png'
 						width='80'
 						height='80'
 						className='mx-auto rounded-3xl'
@@ -65,11 +65,11 @@ function LoginPage() {
 							{...form.register('password')}
 						/>
 					</div>
-					<Button type='submit' className='w-full'>
+					<Button color='primary' type='submit' className='w-full'>
 						Login
 					</Button>
 
-					<Button color='primary' as={Link} href='/signup' className='w-full'>
+					<Button as={Link} href='/signup' className='w-full'>
 						Create an account
 					</Button>
 				</form>

@@ -2,7 +2,13 @@
 
 import { useMemo } from 'react';
 import { useParams, usePathname } from 'next/navigation';
-import { TbHammer, TbHome2, TbSettings, TbSettings2 } from 'react-icons/tb';
+import {
+	TbHammer,
+	TbHome2,
+	TbSettings,
+	TbSettings2,
+	TbSpeakerphone,
+} from 'react-icons/tb';
 import { IconType } from 'react-icons/lib';
 import Link from 'next/link';
 
@@ -22,25 +28,31 @@ const AppSidebarItems: SidebarItemProps[] = [
 		icon: TbHome2,
 		path: '/d/chats',
 		regex: /^\/d\/chats/,
-		childRegex: /^\/d\/chats\/\d+/,
+		childRegex: /^\/d\/chats\/-?\d+/,
 		child: [
 			{
 				label: 'Home',
 				icon: TbHome2,
 				path: '/d/chats/[chatId]',
-				regex: /^\/d\/chats\/\d+$/,
+				regex: /^\/d\/chats\/-?\d+$/,
+			},
+			{
+				label: 'Announcements',
+				icon: TbSpeakerphone,
+				path: '/d/chats/[chatId]/announcements',
+				regex: /^\/d\/chats\/-?\d+\/announcements$/,
 			},
 			{
 				label: 'Moderation',
 				icon: TbHammer,
 				path: '/d/chats/[chatId]/moderation',
-				regex: /^\/d\/chats\/\d+\/moderation$/,
+				regex: /^\/d\/chats\/-?\d+\/moderation$/,
 			},
 			{
 				label: 'Settings',
 				icon: TbSettings2,
 				path: '/d/chats/[chatId]/settings',
-				regex: /^\/d\/chats\/\d+\/settings$/,
+				regex: /^\/d\/chats\/-?\d+\/settings$/,
 			},
 		],
 	},

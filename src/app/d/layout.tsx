@@ -4,12 +4,19 @@ import { redirect } from 'next/navigation';
 import { AppBar } from '~components/AppBar';
 import { AppSidebar } from '~components/AppSidebar';
 import { authOptions } from '~lib/auth';
+import { getUserBots } from '~lib/bot';
 
 async function ChatsLayout({ children }: { children: React.ReactNode }) {
 	const session = await getServerSession(authOptions);
 
 	if (!session) {
 		redirect('/login');
+	}
+
+	const bots = await getUserBots(session.user.id);
+
+	if (bots.length === 0) {
+		redirect('/setup');
 	}
 
 	return (
