@@ -18,7 +18,7 @@ export function AppBar() {
 
 	return (
 		<div className='border-b-1'>
-			<div className='max-w-6xl m-auto'>
+			<div className='w-[80rem] m-auto'>
 				<AppDrawer disclosure={drawer} />
 
 				<div className='flex items-center px-4 gap-4 h-20'>
