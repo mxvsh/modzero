@@ -14,12 +14,15 @@ const inputIds = [
 
 	// New Users
 	'welcome_message',
+	'welcome_message_buttons',
 ] as const;
+
+export type ModerationInputType = InputType<(typeof inputIds)[number]>;
 
 export type Section = {
 	title: string;
 	subTitle: string;
-	inputs: InputType<(typeof inputIds)[number]>[];
+	inputs: ModerationInputType[];
 };
 
 export const AllModerations: Record<Types, Section[]> = {
@@ -64,13 +67,17 @@ export const AllModerations: Record<Types, Section[]> = {
 	newUsers: [
 		{
 			title: 'Welcome Message',
-			subTitle: 'Configure the welcome message',
+			subTitle: 'Configure the welcome message and setup keyboard buttons',
 			inputs: [
 				{
 					id: 'welcome_message',
 					type: 'markdown',
 					label: 'Welcome message',
 					hint: 'The message that will be sent to new users when they join.',
+				},
+				{
+					id: 'welcome_message_buttons',
+					type: 'url_buttons',
 				},
 			],
 		},

@@ -1,9 +1,10 @@
 import { Checkbox, Input } from '@nextui-org/react';
 import { TipTap } from './TipTap';
-import { InputType } from '~lib/types';
+import { ModerationInputType } from '~lib/moderations/all';
+import { KeyboardButtonBuilder } from './KeyboardButton';
 
 type InputBuilderProps = {
-	input: InputType;
+	input: ModerationInputType;
 };
 const InputBuilder = ({ input }: InputBuilderProps) => {
 	switch (input.type) {
@@ -37,6 +38,14 @@ const InputBuilder = ({ input }: InputBuilderProps) => {
 			return (
 				<div className='space-y-1 w-full bg-white'>
 					<TipTap hint={input.hint} />
+				</div>
+			);
+		}
+
+		case 'url_buttons': {
+			return (
+				<div className='space-y-1 w-full bg-white'>
+					<KeyboardButtonBuilder />
 				</div>
 			);
 		}
