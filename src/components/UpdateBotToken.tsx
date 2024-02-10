@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+	Avatar,
 	Button,
 	Card,
 	CardBody,
@@ -23,7 +24,16 @@ function UpdateBotToken({ bot }: Props) {
 	return (
 		<Card>
 			<CardHeader>
-				<h1 className='text-lg font-bold'>Bot Token</h1>
+				<div className='flex items-center gap-4'>
+					<Avatar
+						size='lg'
+						src={`https://api.dicebear.com/7.x/initials/svg?seed=${bot.name}`}
+					/>
+					<div>
+						<h1 className='text-lg font-bold'>{bot.name}</h1>
+						<p className='text-sm text-gray-500'>{bot.id}</p>
+					</div>
+				</div>
 			</CardHeader>
 			<CardBody className='space-y-4'>
 				<Input
@@ -34,7 +44,7 @@ function UpdateBotToken({ bot }: Props) {
 			</CardBody>
 			<CardFooter>
 				<Button color='primary' startContent={<TbDeviceFloppy />}>
-					Save
+					Update Token
 				</Button>
 				<Button
 					color='primary'
