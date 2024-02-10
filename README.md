@@ -6,6 +6,8 @@ Mange your Telegram groups and channels from one place, packed with multiple mod
 
 ## ✨ Features
 
+![Artboard](https://github.com/mxvh/modzero/assets/31907722/cb3585e7-3409-4e34-9ded-91458e307a3c)
+
 1. 🔓 **Open Source**: Our platform is open source, meaning the underlying code is freely available for anyone to view, use, and modify. This fosters transparency, collaboration, and community-driven development.
 
 2. 💻 **Modern and Intuitive UI**: We pride ourselves on offering a modern and intuitive user interface (UI) that is easy to navigate and aesthetically pleasing. Our UI is designed to enhance user experience and streamline the management of Telegram groups and channels.
@@ -21,6 +23,7 @@ Mange your Telegram groups and channels from one place, packed with multiple mod
 7. 📊 **Analytics**: Gain valuable insights into the performance and engagement of your Telegram communities with our built-in analytics tools. Track metrics such as member growth, message engagement, and user activity to inform your community management strategies and drive growth.
 
 8. 🚀 **Quick Install and Setup Using All Free Providers (Vercel for Hosting and Neon.tech for Database)**: We offer a hassle-free installation and setup process using free providers like Vercel for hosting and Neon.tech for database storage. With just a few simple steps, you can have your Telegram management platform up and running in no time, without any upfront costs.
+
 
 
 ## ⚡ Installation
