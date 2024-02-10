@@ -1,4 +1,4 @@
-import { Bot } from 'grammy/web';
+import { Telegraf } from 'telegraf';
 import { UserFromGetMe } from 'grammy/types';
 import prisma from '~lib/prisma';
 // import telegramBot from '~telegram/bot';
@@ -21,19 +21,16 @@ export async function POST(req: Request) {
 		throw new Error('Bot not found');
 	}
 
-	const bot = new Bot(botData.token, {
-		botInfo: botData.botInfo as unknown as UserFromGetMe,
-	});
+	const bot = new Telegraf(botData.token, {});
 
 	// note: just for testing purpose
 	bot.command('start', (ctx) => {
 		ctx.reply('Hello!');
 	});
 
-	console.log('bot', bot);
-
 	// bot.use(telegramBot);
 
+	console.log('payload', payload);
 	await bot.handleUpdate(payload);
 
 	return new Response('ok');
