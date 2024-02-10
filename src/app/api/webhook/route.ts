@@ -15,6 +15,8 @@ export async function POST(req: Request) {
 		},
 	});
 
+	console.log('botData', botData);
+
 	if (!botData) {
 		throw new Error('Bot not found');
 	}
@@ -28,9 +30,11 @@ export async function POST(req: Request) {
 		ctx.reply('Hello!');
 	});
 
+	console.log('bot', bot);
+
 	// bot.use(telegramBot);
 
-	bot.handleUpdate(payload);
+	await bot.handleUpdate(payload);
 
 	return new Response('ok');
 }
