@@ -1,4 +1,4 @@
-import { Composer } from 'grammy/web';
+import { Composer } from 'telegraf';
 import databaseComposer from './database';
 
 const bot = new Composer();

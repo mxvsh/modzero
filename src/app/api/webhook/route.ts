@@ -1,7 +1,6 @@
 import { Telegraf } from 'telegraf';
-import { UserFromGetMe } from 'grammy/types';
 import prisma from '~lib/prisma';
-// import telegramBot from '~telegram/bot';
+import telegramBot from '~telegram/bot';
 
 export async function POST(req: Request) {
 	const url = new URL(req.url);
@@ -15,22 +14,14 @@ export async function POST(req: Request) {
 		},
 	});
 
-	console.log('botData', botData);
-
 	if (!botData) {
 		throw new Error('Bot not found');
 	}
 
 	const bot = new Telegraf(botData.token, {});
 
-	// note: just for testing purpose
-	bot.command('start', (ctx) => {
-		ctx.reply('Hello!');
-	});
+	bot.use(telegramBot);
 
-	// bot.use(telegramBot);
-
-	console.log('payload', payload);
 	await bot.handleUpdate(payload);
 
 	return new Response('ok');

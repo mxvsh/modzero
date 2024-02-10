@@ -1,5 +1,5 @@
-import { Composer } from 'grammy/web';
-import { ChatMemberAdministrator, ChatMemberOwner } from 'grammy/types';
+import { Composer } from 'telegraf';
+import { ChatMemberOwner, ChatMemberAdministrator } from 'telegraf/types';
 import prisma from '~lib/prisma';
 
 const databaseComposer = new Composer();
@@ -33,7 +33,7 @@ databaseComposer.use(async (ctx, next) => {
 		const { new_chat_member } = ctx.myChatMember;
 
 		// Only run if the bot is added to a group/channel
-		if (new_chat_member.user.id === ctx.me.id) {
+		if (new_chat_member.user.id === ctx.botInfo.id) {
 			if (new_chat_member.status === 'administrator') {
 				if (chat) {
 					const chatExist = await prisma.telegramChat.findUnique({
@@ -46,7 +46,7 @@ databaseComposer.use(async (ctx, next) => {
 						return;
 					}
 
-					const toalMembers = await ctx.getChatMemberCount();
+					const toalMembers = await ctx.getChatMembersCount();
 
 					if (
 						chat.type === 'supergroup' ||
@@ -105,7 +105,7 @@ databaseComposer.on('message', async (ctx, next) => {
 			});
 
 			if (totalChats === 0) {
-				const toalMembers = await ctx.getChatMemberCount();
+				const toalMembers = await ctx.getChatMembersCount();
 
 				if (chat.type === 'supergroup' || chat.type === 'group') {
 					const admins = await ctx.getChatAdministrators();
