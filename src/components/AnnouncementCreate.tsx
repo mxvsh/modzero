@@ -1,6 +1,5 @@
 'use client';
 
-import { useAppStore } from '~lib/store';
 import { Button } from '@nextui-org/react';
 import { useEditor, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';

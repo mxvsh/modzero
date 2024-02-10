@@ -43,10 +43,10 @@ const AppSidebarItems: SidebarItemProps[] = [
 				regex: /^\/d\/chats\/-?\d+\/announcements$/,
 			},
 			{
-				label: 'Moderation',
+				label: 'Moderations',
 				icon: TbHammer,
-				path: '/d/chats/[chatId]/moderation',
-				regex: /^\/d\/chats\/-?\d+\/moderation$/,
+				path: '/d/chats/[chatId]/moderations',
+				regex: /^\/d\/chats\/-?\d+\/moderations$/,
 			},
 			{
 				label: 'Settings',
