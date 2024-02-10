@@ -1,10 +1,10 @@
 import { Checkbox, Input } from '@nextui-org/react';
 import { TipTap } from './TipTap';
-import { ModerationInputType } from '~lib/moderations/all';
 import { KeyboardButtonBuilder } from './KeyboardButton';
+import { InputType } from '~lib/types';
 
 type InputBuilderProps = {
-	input: ModerationInputType;
+	input: InputType;
 };
 const InputBuilder = ({ input }: InputBuilderProps) => {
 	switch (input.type) {

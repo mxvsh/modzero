@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation';
 import React from 'react';
 import { AllModerations } from '~lib/moderations/all';
 import { SectionBuilder } from './SectionBuilder';
+import FilterMessageType from './Filters/MessageType';
+import ServiceMessage from './Filters/ServiceMessage';
 
 function ModerationsList() {
 	const params = useParams();
@@ -36,8 +38,13 @@ function ModerationsList() {
 						))}
 					</div>
 				</Tab>
+				<Tab key='filters' title='Filters'>
+					<div className='space-y-6 p-4'>
+						<FilterMessageType />
+						<ServiceMessage />
+					</div>
+				</Tab>
 				<Tab key='anti-spam' title='Anti-Spam'></Tab>
-				<Tab key='filters' title='Filters'></Tab>
 				<Tab key='workflows' title='Workflows'></Tab>
 			</Tabs>
 		</div>
