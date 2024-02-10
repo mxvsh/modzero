@@ -40,5 +40,5 @@ Fill in the required environment variables to configure your application:
 ```env
 WEBHOOK_ADDRESS: This is the address where your application's webhook will be hosted. Replace your_vercel_address with the address provided by Vercel.
 DATABASE_URL: This is the URL of your database hosted on Neon.tech. Replace neontech_db_url with the URL of your database.
-SECRET: Use ` openssl rand -base64 32` to generate random string.
+NEXTAUTH_SECRET: Use ` openssl rand -base64 32` to generate random string.
 ```
