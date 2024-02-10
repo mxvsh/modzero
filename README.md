@@ -1,5 +1,8 @@
 # modzero
 
+> [!IMPORTANT]
+> The project is under development. Feel free to contribute and create a pull request for new features. Join our [Telegram support chat](https://t.me/modzerochat) for project discussions.
+
 ![Artboard](https://github.com/mxvh/modzero/assets/31907722/e504b081-0595-4aca-af29-48297db4b336)
 
 Mange your Telegram groups and channels from one place, packed with multiple moderation tools to help you become a pro administrator.
