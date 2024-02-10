@@ -28,7 +28,7 @@ async function ChatsLayout({ children }: { children: React.ReactNode }) {
 			<ProgressBar />
 
 			<div className='flex h-full w-[80rem] mx-auto overflow-hidden'>
-				<div className='w-72 border-r pr-4 pt-4'>
+				<div className='w-72 border-r'>
 					<AppSidebar />
 				</div>
 				<div className='flex-1 overflow-y-auto'>{children}</div>
