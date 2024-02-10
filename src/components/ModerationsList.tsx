@@ -2,12 +2,12 @@
 
 import { Tab, Tabs } from '@nextui-org/react';
 import React from 'react';
-import { AllModerations } from '~lib/moderations/all';
 import { SectionBuilder } from './SectionBuilder';
 import FilterMessageType from './Filters/MessageType';
-import ServiceMessage from './Filters/ServiceMessage';
 import { BlacklistWords } from './Filters/Blacklist';
-import NewUserPolicies from './NewUsers/Policies';
+import { BasicModeration } from '~lib/moderations/basic';
+import { NewUserModerations } from '~lib/moderations/new-users';
+import { FilterModerations } from '~lib/moderations/filters';
 
 function ModerationsList() {
 	return (
@@ -25,23 +25,24 @@ function ModerationsList() {
 			>
 				<Tab key='basic' title='Basic'>
 					<div className='space-y-6 p-4'>
-						{AllModerations.basic.map((section) => (
+						{BasicModeration.map((section) => (
 							<SectionBuilder key={section.title} section={section} />
 						))}
 					</div>
 				</Tab>
 				<Tab key='new-users' title='New Users'>
 					<div className='space-y-6 p-4'>
-						{AllModerations.newUsers.map((section) => (
+						{NewUserModerations.map((section) => (
 							<SectionBuilder key={section.title} section={section} />
 						))}
-						<NewUserPolicies />
 					</div>
 				</Tab>
 				<Tab key='filters' title='Filters'>
 					<div className='space-y-6 p-4'>
 						<FilterMessageType />
-						<ServiceMessage />
+						{FilterModerations.map((section) => (
+							<SectionBuilder key={section.title} section={section} />
+						))}
 						<BlacklistWords />
 					</div>
 				</Tab>

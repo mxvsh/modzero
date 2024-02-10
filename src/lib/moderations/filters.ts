@@ -1,4 +1,5 @@
 import { InputType } from '~lib/types';
+import { ModerationSection } from './types';
 
 export enum MessageType {
 	Link = 'Link',
@@ -36,3 +37,27 @@ export const ExceptionInputs: Partial<Record<MessageType, InputType[]>> = {
 		},
 	],
 };
+
+export const FilterModerations: ModerationSection[] = [
+	{
+		title: 'Service Messages',
+		subTitle: 'Select the service messages you want to filter',
+		inputs: [
+			{
+				id: 'delete_service_message_new_user',
+				type: 'checkbox',
+				label: 'Delete service messages about new users',
+			},
+			{
+				id: 'delete_service_message_leaving_user',
+				type: 'checkbox',
+				label: 'Delete service messages about leaving users',
+			},
+			{
+				id: 'delete_service_message_pinned_message',
+				type: 'checkbox',
+				label: 'Delete service messages about pinned messages',
+			},
+		],
+	},
+];
