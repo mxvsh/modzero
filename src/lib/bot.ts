@@ -1,4 +1,4 @@
-import { Bot } from 'grammy/web';
+import { Telegraf } from 'telegraf';
 import prisma from './prisma';
 
 export function getUserBots(userId: string) {
@@ -15,5 +15,5 @@ export async function getBotInstance() {
 		throw new Error('Bot not found');
 	}
 
-	return new Bot(botData.token);
+	return new Telegraf(botData.token);
 }

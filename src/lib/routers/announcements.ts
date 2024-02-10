@@ -13,7 +13,7 @@ export const createAnnouncement = protectedProcedure
 		const bot = await getBotInstance();
 
 		try {
-			bot.api.sendMessage(input.chatId, input.text, {
+			await bot.telegram.sendMessage(input.chatId, input.text, {
 				parse_mode: 'Markdown',
 			});
 		} catch (e) {
