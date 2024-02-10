@@ -69,6 +69,9 @@ export function AppBar() {
 								disableRipple
 								variant='light'
 								startContent={<UsersIcon size={16} />}
+								as={Link}
+								href='https://t.me/modzerochat'
+								target='_blank'
 							>
 								Support
 							</Button>
