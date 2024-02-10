@@ -13,19 +13,18 @@ import { LuCog } from 'react-icons/lu';
 import { useState } from 'react';
 import { InputType } from '~lib/types';
 import InputBuilder from '~components/InputBuilder';
+import SectionCard from '~components/SectionCard';
 
 function FilterMessageType() {
 	const modal = useDisclosure();
 	const [inputs, setInputs] = useState<InputType[] | null>(null);
 
 	return (
-		<div className='bg-neutral-50 border rounded-xl p-4'>
-			<h1 className='font-semibold'>Message Type</h1>
-			<p className='text-sm text-gray-500'>
-				Select the message types you want to filter
-			</p>
-
-			<div className='mt-4 space-y-2'>
+		<SectionCard
+			title='Message Type'
+			description='	Select the message types you want to filter'
+		>
+			<>
 				{Object.entries(MessageType).map(([, value]) => {
 					const exceptionInputs = ExceptionInputs[value];
 					return (
@@ -51,33 +50,33 @@ function FilterMessageType() {
 						</div>
 					);
 				})}
-			</div>
 
-			<Modal isOpen={modal.isOpen} onOpenChange={modal.onOpenChange}>
-				<ModalContent>
-					{(onClose) => (
-						<>
-							<ModalHeader className='flex flex-col gap-1'>
-								Exception Inputs
-							</ModalHeader>
-							<ModalBody>
-								{inputs?.map((input) => (
-									<InputBuilder key={input.label} input={input} />
-								))}
-							</ModalBody>
-							<ModalFooter>
-								<Button color='danger' variant='light' onPress={onClose}>
-									Close
-								</Button>
-								<Button color='primary' onPress={onClose}>
-									Action
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal>
-		</div>
+				<Modal isOpen={modal.isOpen} onOpenChange={modal.onOpenChange}>
+					<ModalContent>
+						{(onClose) => (
+							<>
+								<ModalHeader className='flex flex-col gap-1'>
+									Exception Inputs
+								</ModalHeader>
+								<ModalBody>
+									{inputs?.map((input) => (
+										<InputBuilder key={input.label} input={input} />
+									))}
+								</ModalBody>
+								<ModalFooter>
+									<Button color='danger' variant='light' onPress={onClose}>
+										Close
+									</Button>
+									<Button color='primary' onPress={onClose}>
+										Action
+									</Button>
+								</ModalFooter>
+							</>
+						)}
+					</ModalContent>
+				</Modal>
+			</>
+		</SectionCard>
 	);
 }
 

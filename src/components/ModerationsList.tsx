@@ -1,16 +1,15 @@
 'use client';
 
 import { Tab, Tabs } from '@nextui-org/react';
-import { useParams } from 'next/navigation';
 import React from 'react';
 import { AllModerations } from '~lib/moderations/all';
 import { SectionBuilder } from './SectionBuilder';
 import FilterMessageType from './Filters/MessageType';
 import ServiceMessage from './Filters/ServiceMessage';
+import { BlacklistWords } from './Filters/Blacklist';
+import NewUserPolicies from './NewUsers/Policies';
 
 function ModerationsList() {
-	const params = useParams();
-
 	return (
 		<div className=''>
 			<Tabs
@@ -36,12 +35,14 @@ function ModerationsList() {
 						{AllModerations.newUsers.map((section) => (
 							<SectionBuilder key={section.title} section={section} />
 						))}
+						<NewUserPolicies />
 					</div>
 				</Tab>
 				<Tab key='filters' title='Filters'>
 					<div className='space-y-6 p-4'>
 						<FilterMessageType />
 						<ServiceMessage />
+						<BlacklistWords />
 					</div>
 				</Tab>
 				<Tab key='anti-spam' title='Anti-Spam'></Tab>

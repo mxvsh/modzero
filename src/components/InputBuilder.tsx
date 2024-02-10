@@ -44,7 +44,7 @@ const InputBuilder = ({ input }: InputBuilderProps) => {
 
 		case 'url_buttons': {
 			return (
-				<div className='space-y-1 w-full bg-white'>
+				<div className='space-y-1 w-full'>
 					<KeyboardButtonBuilder />
 				</div>
 			);
