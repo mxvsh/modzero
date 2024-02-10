@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next';
 import UpdateBotToken from '~components/UpdateBotToken';
 import { authOptions } from '~lib/auth';
 import { getUserBots } from '~lib/bot';
+import BotInfo from '~components/BotInfo';
 
 async function Settings() {
 	const session = await getServerSession(authOptions);
@@ -13,7 +14,8 @@ async function Settings() {
 
 	return (
 		<>
-			<div className='p-4 space-y-4 max-w-lg'>
+			<div className='p-4 space-y-4'>
+				<BotInfo bot={bot} />
 				<UpdateBotToken bot={bot} />
 			</div>
 		</>

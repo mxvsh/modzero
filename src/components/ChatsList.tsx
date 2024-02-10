@@ -1,4 +1,21 @@
-import { Button, Card, CardBody, CardHeader, Chip } from '@nextui-org/react';
+'use client';
+
+import {
+	Button,
+	Card,
+	CardBody,
+	CardHeader,
+	Chip,
+	Input,
+	Tab,
+	Table,
+	TableBody,
+	TableCell,
+	TableColumn,
+	TableHeader,
+	TableRow,
+	Tabs,
+} from '@nextui-org/react';
 import { TelegramChat } from '@prisma/client';
 import Link from 'next/link';
 import React from 'react';
@@ -9,11 +26,22 @@ type Props = {
 function ChatsList({ chats }: Props) {
 	return (
 		<div className='space-y-4 p-4'>
-			<p className='text-sm text-gray-500'>
-				Here are the chats you have with the bot
-			</p>
+			<div className='flex items-center'>
+				<Input
+					placeholder='Search'
+					variant='bordered'
+					className='w-72'
+					size='sm'
+				/>
+				<div className='flex-1' />
+				<Tabs aria-label='Options'>
+					<Tab key='all' title='All'></Tab>
+					<Tab key='groups' title='Groups'></Tab>
+					<Tab key='channels' title='Channels'></Tab>
+				</Tabs>
+			</div>
 
-			<div className='grid grid-cols-1 lg:grid-cols-3 '>
+			<div className='space-y-2'>
 				{chats.map((chat) => {
 					return (
 						<Card key={chat.id}>

@@ -18,62 +18,64 @@ export function AppBar() {
 
 	return (
 		<div className='border-b-1'>
-			<AppDrawer disclosure={drawer} />
+			<div className='max-w-6xl m-auto'>
+				<AppDrawer disclosure={drawer} />
 
-			<div className='flex items-center px-4 gap-4 h-20'>
-				<Button
-					isIconOnly
-					disableRipple
-					variant='light'
-					size='lg'
-					className='md:hidden'
-					onClick={drawer.onOpenChange}
-				>
-					<MenuIcon />
-				</Button>
+				<div className='flex items-center px-4 gap-4 h-20'>
+					<Button
+						isIconOnly
+						disableRipple
+						variant='light'
+						size='lg'
+						className='md:hidden'
+						onClick={drawer.onOpenChange}
+					>
+						<MenuIcon />
+					</Button>
 
-				<Image
-					className={`pointer-events-none rounded-2xl ${
-						!isRoot ? 'hidden' : 'md:block'
-					}`}
-					alt='logo'
-					src={logo}
-					height={60}
-				/>
+					<Image
+						className={`pointer-events-none rounded-2xl ${
+							!isRoot ? 'hidden' : 'md:block'
+						}`}
+						alt='logo'
+						src={logo}
+						height={60}
+					/>
 
-				{!isRoot && (
-					<div className='hidden md:flex items-center gap-6'>
-						<Link href='/d/chats'>
-							<ArrowLeftIcon size={30} />
-						</Link>
-						{appStore.appTitle ? (
-							<h1 className='font-semibold text-2xl'>{appStore.appTitle}</h1>
-						) : (
-							<Spinner />
-						)}
+					{!isRoot && (
+						<div className='hidden md:flex items-center gap-6'>
+							<Link href='/d/chats'>
+								<ArrowLeftIcon size={30} />
+							</Link>
+							{appStore.appTitle ? (
+								<h1 className='font-semibold text-2xl'>{appStore.appTitle}</h1>
+							) : (
+								<Spinner />
+							)}
+						</div>
+					)}
+
+					<div className='flex-1' />
+					<div className='gap-2 hidden md:flex'>
+						<>
+							<Button
+								disableRipple
+								variant='light'
+								startContent={<BookIcon size={16} />}
+							>
+								Docs
+							</Button>
+							<Button
+								disableRipple
+								variant='light'
+								startContent={<UsersIcon size={16} />}
+							>
+								Support
+							</Button>
+						</>
 					</div>
-				)}
-
-				<div className='flex-1' />
-				<div className='gap-2 hidden md:flex'>
-					<>
-						<Button
-							disableRipple
-							variant='light'
-							startContent={<BookIcon size={16} />}
-						>
-							Docs
-						</Button>
-						<Button
-							disableRipple
-							variant='light'
-							startContent={<UsersIcon size={16} />}
-						>
-							Support
-						</Button>
-					</>
+					<AvatarMenu />
 				</div>
-				<AvatarMenu />
 			</div>
 		</div>
 	);

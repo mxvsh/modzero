@@ -1,5 +1,6 @@
 import React from 'react';
 import ChatsList from '~components/ChatsList';
+import PageTitle from '~components/PageTitle';
 import prisma from '~lib/prisma';
 
 async function Chats() {
@@ -7,6 +8,7 @@ async function Chats() {
 
 	return (
 		<>
+			<PageTitle title='Chats' />
 			<ChatsList chats={chats} />
 		</>
 	);
